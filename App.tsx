@@ -1,23 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import { PersistGate } from "redux-persist/es/integration/react";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "styled-components/native";
+import FooterNavigator from "components/Common/FooterNavigator";
+import { store, persistor } from "store/store";
+import defaultTheme from "constants/theme";
 
-export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
-
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
+const App = () => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <ThemeProvider theme={defaultTheme}>
+          <NavigationContainer>
+            <FooterNavigator />
+          </NavigationContainer>
+          <StatusBar style="auto" />
+        </ThemeProvider>
       </SafeAreaProvider>
-    );
-  }
-}
+    </PersistGate>
+  </Provider>
+);
+
+export default App;
