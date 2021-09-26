@@ -24,5 +24,23 @@ const investorReturnEffects = {
       dispatch(hideLoading());
       return false;
     },
+  getMoviesByGenreRequest:
+    (genre: string) => async (dispatch: Dispatch<DispatchGeneralInterface>) => {
+      dispatch(showLoading());
+      dispatch(moviesActions.getMoviesByGenreRequest());
+
+      const response = await moviesService.getMoviesByGenreService(genre);
+      const { data } = response;
+
+      if (data) {
+        dispatch(moviesActions.getMoviesByGenreSuccess(data));
+        dispatch(hideLoading());
+        return data;
+      }
+
+      dispatch(moviesActions.getMoviesByGenreFailure(errObject(response)));
+      dispatch(hideLoading());
+      return false;
+    },
 };
 export default investorReturnEffects;

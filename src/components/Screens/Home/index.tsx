@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { View, Text, ScrollView, FlatList } from "react-native";
 import { moviesEffects, moviesSelectors } from "store/index";
@@ -7,6 +7,7 @@ import ShowMoreLine from "components/Common/ShowMoreLine";
 import MoviCard from "components/Common/MoviCard";
 const Home = () => {
   const dispatch = useDispatch();
+  const [moviesData, setMoviesData] = useState([]);
 
   const getGenresLoading = useSelector((state) =>
     moviesSelectors.getGenresLoading(state)
@@ -15,10 +16,23 @@ const Home = () => {
     moviesSelectors.getGenresData(state)
   );
 
+  const moviByGanreData = useSelector((state) =>
+    moviesSelectors.getMoviesByGenreData(state)
+  );
+
   console.log("getGenresData :>> ", getGenresData);
   useEffect(() => {
     dispatch(moviesEffects.getGenresRequest());
   }, []);
+
+  useEffect(() => {
+    if (moviByGanreData) {
+      const mergedMoviByGanreData = [...moviesData, ...moviByGanreData];
+      setMoviesData(mergedMoviByGanreData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moviByGanreData]);
+
   if (getGenresLoading) {
     return <Text style={[gs.textWhite]}>"loading ....."</Text>;
   }

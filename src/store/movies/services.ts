@@ -7,7 +7,7 @@ export default {
     return request.get(url);
   },
 
-  getMoviesByGenre(genre: string) {
+  getMoviesByGenreService(genre: string) {
     const url = endpoints.MOVI.GET_MOVIES_BY_GENRE(genre);
     return request.get(url);
   },

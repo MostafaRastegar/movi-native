@@ -11,4 +11,12 @@ export default {
     getMovies,
     (movies) => movies.getGenres.loading
   ),
+  getMoviesByGenreData: createSelector(
+    getMovies,
+    (movies) => movies.getMoviesByGenre.data
+  ),
+  getMoviesByGenreLoading: createSelector(
+    getMovies,
+    (movies) => movies.getMoviesByGenre.loading
+  ),
 };
