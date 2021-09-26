@@ -6,4 +6,9 @@ export default {
     const url = endpoints.MOVI.GET_GENRES();
     return request.get(url);
   },
+
+  getMoviesByGenre(genre: string) {
+    const url = endpoints.MOVI.GET_MOVIES_BY_GENRE(genre);
+    return request.get(url);
+  },
 };

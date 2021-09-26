@@ -9,13 +9,15 @@ export interface PropsI {
 }
 
 const MoviCard = ({ imageUri, title, link }: PropsI) => (
-  <View style={[gs.flex, gs.flexCol, { width: 74 }]}>
-    <Image
-      style={{ width: 74, height: 110 }}
-      source={{
-        uri: imageUri,
-      }}
-    />
+  <View style={[gs.flex, gs.flexCol]}>
+    <View style={{ width: 74, height: 110, aspectRatio: 1 * 1.4 }}>
+      <Image
+        style={{ resizeMode: "cover", width: "100%", height: "100%" }}
+        source={{
+          uri: imageUri,
+        }}
+      />
+    </View>
     <Text
       style={[
         gs.textWhite,

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView, FlatList } from "react-native";
 import { moviesEffects, moviesSelectors } from "store/index";
 import gs from "constants/theme/GlobalStyle";
 import ShowMoreLine from "components/Common/ShowMoreLine";
@@ -19,18 +19,36 @@ const Home = () => {
   useEffect(() => {
     dispatch(moviesEffects.getGenresRequest());
   }, []);
-
+  if (getGenresLoading) {
+    return <Text style={[gs.textWhite]}>"loading ....."</Text>;
+  }
   return (
-    <View>
-      <Text style={[gs.textWhite]}>Home</Text>
-      <ShowMoreLine title="home" link="http://google.com">
-        <MoviCard
-          title="home"
-          link="http://google.com"
-          imageUri="https://reactnative.dev/img/tiny_logo.png"
-        />
-      </ShowMoreLine>
-    </View>
+    <ScrollView>
+      <Text style={[gs.textWhite, gs.mb16]}>Genres List</Text>
+      <FlatList
+        data={getGenresData}
+        keyExtractor={(item) => item.genre}
+        initialNumToRender={10}
+        initialScrollIndex={10}
+        renderItem={({ item }) => (
+          <ShowMoreLine
+            title={item.genre}
+            link="http://google.com"
+            style={[gs.mb16]}
+          >
+            <ScrollView horizontal>
+              <View style={[gs.mr16]}>
+                <MoviCard
+                  title="home"
+                  link="http://google.com"
+                  imageUri="https://reactnative.dev/img/tiny_logo.png"
+                />
+              </View>
+            </ScrollView>
+          </ShowMoreLine>
+        )}
+      ></FlatList>
+    </ScrollView>
   );
 };
 

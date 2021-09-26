@@ -185,4 +185,64 @@ export default StyleSheet.create({
   textWhite: {
     color: "white",
   },
+  m16: {
+    margin: 16,
+  },
+  mr16: {
+    marginRight: 16,
+  },
+  ml16: {
+    marginLeft: 16,
+  },
+  mt16: {
+    marginTop: 16,
+  },
+  mb16: {
+    marginBottom: 16,
+  },
+  m8: {
+    margin: 8,
+  },
+  mr8: {
+    marginRight: 8,
+  },
+  ml8: {
+    marginLeft: 8,
+  },
+  mt8: {
+    marginTop: 8,
+  },
+  mb8: {
+    marginBottom: 8,
+  },
+  p16: {
+    margin: 16,
+  },
+  pr16: {
+    marginRight: 16,
+  },
+  pl16: {
+    marginLeft: 16,
+  },
+  pt16: {
+    marginTop: 16,
+  },
+  pb16: {
+    marginBottom: 16,
+  },
+  p8: {
+    margin: 8,
+  },
+  pr8: {
+    marginRight: 8,
+  },
+  pl8: {
+    marginLeft: 8,
+  },
+  pt8: {
+    marginTop: 8,
+  },
+  pb8: {
+    marginBottom: 8,
+  },
 });

@@ -16,5 +16,7 @@ export default {
   },
   MOVI: {
     GET_GENRES: () => `${localEnv.HOSTURL}/genres/`,
+    GET_MOVIES_BY_GENRE: (genre: string) =>
+      `${localEnv.HOSTURL}/movie/byGen/${genre}`,
   },
 };
